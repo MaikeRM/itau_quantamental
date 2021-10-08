@@ -15,7 +15,7 @@ def calc_ret_ln(df):
         for columns in df.columns:
             df_ln[columns][i] = math.log(df[columns][i])
 
-    # Retorno diário     
+    # Retorno diário OLS
     ret = df_ln - df_ln.shift(-1)
 
     return ret.dropna(), df_ln
