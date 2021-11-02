@@ -18,7 +18,7 @@ def calc_ret_ln(df):
     # Retorno diário OLS
     ret = df_ln - df_ln.shift(-1)
 
-    return ret.dropna(), df_ln
+    return ret.dropna(), df_ln.dropna()
 
 
 def reg_m(x,y):
