@@ -235,6 +235,7 @@ class OpticsPairs:
             raise ValueError("norm_spreads not found: must run \
                             .calc_eg_norm_spreads before this function")
 
+        self.norm_spreads.fillna(0, inplace=True)
         self.half_lives = self.norm_spreads.apply(OpticsPairs.half_life)
 
     def calc_avg_cross_count(self, trading_year: float = 252.0):
