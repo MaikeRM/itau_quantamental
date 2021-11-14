@@ -155,6 +155,9 @@ class OpticsPairs:
             # Get independent and dependent variables
             # for OLS calculation and corresponding
             # pvalue for Engle-Granger tests
+
+            security_0.fillna(0, inplace=True)
+            security_1.fillna(0, inplace=True)
             pvalue, x_, y_ = OpticsPairs.get_ols_variables(security_0, security_1)
             engle_granger_tests.append(pvalue)
 
