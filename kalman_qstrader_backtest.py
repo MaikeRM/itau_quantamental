@@ -1,4 +1,5 @@
 import click
+import yfinance as yf
 
 from qstrader import settings
 from qstrader.compat import queue
@@ -24,9 +25,7 @@ def run(config, testing, tickers, filename):
     initial_equity = PriceParser.parse(100000.00)
 
     # Use Yahoo Daily Price Handler
-    price_handler = YahooDailyCsvBarPriceHandler(
-        csv_dir, events_queue, tickers
-    )
+    price_handler = yf.download(tickers, period='3y')
 
     # Use the KalmanPairsTrading Strategy
     strategy = KalmanPairsTradingStrategy(tickers, events_queue)
