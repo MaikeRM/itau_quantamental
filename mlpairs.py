@@ -177,14 +177,10 @@ class OpticsPairs:
         # Convert spreads from list to dataframe
         norm_spreads = pd.DataFrame(np.transpose(norm_spreads),
                                     index=self.prices.index)
-        aux_1 = pd.DataFrame(index = range(0,1))
-        aux_1['alpha'] = alpha
+        
+        self.alpha = alpha
+        self.beta = beta
 
-        aux_2 = pd.DataFrame(index = range(0,1))
-        aux_2['beta'] = beta
-
-        self.alpha = aux_1
-        self.beta = aux_2
         self.norm_spreads = norm_spreads
         self.engle_granger_tests = pd.Series(engle_granger_tests)
 
@@ -320,17 +316,13 @@ class OpticsPairs:
                               self.engle_granger_tests,
                               self.hurst_exponents,
                               self.half_lives,
-                              self.avg_cross_count,
-                              self.alpha,
-                              self.beta],
+                              self.avg_cross_count],
                              axis=1)
         pairs_df.columns = ['pair',
                             'pvalue',
                             'hurst_exp',
                             'half_life',
-                            'avg_cross_count',
-                            'alpha',
-                            'beta']
+                            'avg_cross_count']
 
         # Find pairs that meet user defined criteria
         filtered_pairs = pairs_df.loc[
